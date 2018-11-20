@@ -20,21 +20,22 @@ hanoiIA :-
 	read(NumeroDeDiscos),
 	write(NumeroDeDiscos),
 	discos = NumeroDeDiscos,
-	moverDisco(discos, esquerda, direita, central).
+	moverDiscos(discos, 'torre da esquerda', 'torre da direita', 'torre central').
 
-moverDisco(1, torreX, torreY, _) :-
-    write('Mova o disco da torre '),
-    write(torreX),
-    write(' , para a torre '),
-    write(torreY),
+moverDiscos(1, TorreX, TorreY, _) :-
+    write('Mova o disco da torre, '),
+    write(TorreX),
+    write(' para a torre '),
+    write(TorreY),
     nl.
 
-moverDisco(NumeroDeDiscos, torreX, torreY, torreZ) :-
+moverDiscos(NumeroDeDiscos, TorreX, TorreY, TorreZ) :-
     NumeroDeDiscos > 1,
     Auxiliar is NumeroDeDiscos - 1,
-    move(Auxiliar, torreX, torreZ, torreY),
-    move(1, torreX, torreY, _),
-    move(Auxiliar, torreZ, torreY, torreX).
+    moverDiscos(Auxiliar, TorreX, TorreZ, TorreY),
+    moverDiscos(1, TorreX, TorreY, _),
+    moverDiscos(Auxiliar, TorreZ, TorreY, TorreX).
+
     
 regrasDoJogo :- 
 	write('Torre de Hanoi'),nl,nl,
